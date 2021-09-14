@@ -7,6 +7,7 @@ struct FloatingLabelTextField: View
     let textField: TextField<TextFieldStyle._Label>
     let title: FloatingLabelTextFieldStyle.Title
     let error: FloatingLabelTextFieldStyle.Error?
+    let showClearButton: Bool
     
     // Private
     @State private var isHighlighted: Bool = false
@@ -15,10 +16,6 @@ struct FloatingLabelTextField: View
     private var isTextFieldHidden: Bool {
         if self.isHighlighted { return false }
         return self.text.isEmpty
-    }
-    
-    private var isClearButtonHidden: Bool {
-        self.text.isEmpty
     }
     
     private var borderColor: Color {
@@ -54,7 +51,15 @@ struct FloatingLabelTextField: View
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 16) {
                 self.textInput()
-                self.clearButton()
+                
+                if self.showClearButton
+                {
+                    self.clearButton()
+                }
+                else
+                {
+                    Spacer()
+                }
             }
             
             if let error = self.error
@@ -115,7 +120,7 @@ struct FloatingLabelTextField: View
     private func clearButton() -> some View
     {
         Group {
-            if self.isClearButtonHidden
+            if self.text.isEmpty
             {
                 Spacer()
             }

@@ -7,6 +7,7 @@ public struct FloatingLabelTextFieldStyle: TextFieldStyle
 {
     // Private
     private let title: FloatingLabelTextFieldStyle.Title
+    private let showClearButton: Bool
     private let error: FloatingLabelTextFieldStyle.Error?
     
     // MARK: Initialization
@@ -17,11 +18,13 @@ public struct FloatingLabelTextFieldStyle: TextFieldStyle
     ///   - error: The error configuration.
     public init(
         title: FloatingLabelTextFieldStyle.Title,
-        error: FloatingLabelTextFieldStyle.Error? = nil
+        error: FloatingLabelTextFieldStyle.Error? = nil,
+        showClearButton: Bool = true
     )
     {
         self.title = title
         self.error = error
+        self.showClearButton = showClearButton
     }
     
     // MARK: TextFieldStyle
@@ -35,7 +38,8 @@ public struct FloatingLabelTextFieldStyle: TextFieldStyle
             text: text,
             textField: configuration,
             title: self.title,
-            error: self.error
+            error: self.error,
+            showClearButton: self.showClearButton
         )
     }
 }
@@ -47,10 +51,15 @@ extension TextFieldStyle where Self == FloatingLabelTextFieldStyle
     /// A text field style with floating label decoration.
     public static func floating(
         title: FloatingLabelTextFieldStyle.Title,
-        error: FloatingLabelTextFieldStyle.Error? = nil
+        error: FloatingLabelTextFieldStyle.Error? = nil,
+        showClearButton: Bool = true
     ) -> FloatingLabelTextFieldStyle
     {
-        FloatingLabelTextFieldStyle(title: title, error: error)
+        FloatingLabelTextFieldStyle(
+            title: title,
+            error: error,
+            showClearButton: showClearButton
+        )
     }
 }
 

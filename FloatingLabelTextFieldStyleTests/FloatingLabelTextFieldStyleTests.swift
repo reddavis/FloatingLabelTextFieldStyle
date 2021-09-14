@@ -34,6 +34,21 @@ class FloatingLabelTextFieldStyleTests: XCTestCase
         )
     }
     
+    func testWithValueAndHiddenClearButtonState()
+    {
+        assertSnapshot(
+            matching: TextField("e.g. me@red.to", text: .constant("me@red.to"))
+                .textFieldStyle(
+                    .floating(
+                        title: .init(text: "Email"),
+                        showClearButton: false
+                    )
+                ),
+            as: .image,
+            record: false
+        )
+    }
+    
     func testErrorState()
     {
         assertSnapshot(
