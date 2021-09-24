@@ -4,7 +4,7 @@ import SwiftUI
 public extension FloatingLabelTextFieldStyle
 {
     /// Floating label text field style title configuration.
-    struct Title
+    struct TitleStyle
     {
         /// The title's text.
         let text: LocalizedStringKey

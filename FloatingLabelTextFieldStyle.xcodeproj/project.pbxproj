@@ -12,9 +12,9 @@
 		A4BCD94026E09E23008542DD /* FloatingLabelTextFieldStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD93F26E09E23008542DD /* FloatingLabelTextFieldStyleTests.swift */; };
 		A4BCD94126E09E23008542DD /* FloatingLabelTextFieldStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = A4BCD93326E09E23008542DD /* FloatingLabelTextFieldStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4BCD95026E09E69008542DD /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD94C26E09E69008542DD /* FloatingLabelTextField.swift */; };
-		A4BCD95126E09E69008542DD /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD94D26E09E69008542DD /* Error.swift */; };
+		A4BCD95126E09E69008542DD /* ErrorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD94D26E09E69008542DD /* ErrorStyle.swift */; };
 		A4BCD95226E09E69008542DD /* FloatingLabelTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD94E26E09E69008542DD /* FloatingLabelTextFieldStyle.swift */; };
-		A4BCD95326E09E69008542DD /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD94F26E09E69008542DD /* Title.swift */; };
+		A4BCD95326E09E69008542DD /* TitleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD94F26E09E69008542DD /* TitleStyle.swift */; };
 		A4BCD95726E09F8D008542DD /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD95626E09F8D008542DD /* View+Extension.swift */; };
 		A4BCD95F26E0C054008542DD /* iOSExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD95E26E0C054008542DD /* iOSExampleApp.swift */; };
 		A4BCD96126E0C054008542DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BCD96026E0C054008542DD /* ContentView.swift */; };
@@ -63,9 +63,9 @@
 		A4BCD93A26E09E23008542DD /* FloatingLabelTextFieldStyleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FloatingLabelTextFieldStyleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BCD93F26E09E23008542DD /* FloatingLabelTextFieldStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextFieldStyleTests.swift; sourceTree = "<group>"; };
 		A4BCD94C26E09E69008542DD /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
-		A4BCD94D26E09E69008542DD /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		A4BCD94D26E09E69008542DD /* ErrorStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorStyle.swift; sourceTree = "<group>"; };
 		A4BCD94E26E09E69008542DD /* FloatingLabelTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextFieldStyle.swift; sourceTree = "<group>"; };
-		A4BCD94F26E09E69008542DD /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
+		A4BCD94F26E09E69008542DD /* TitleStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleStyle.swift; sourceTree = "<group>"; };
 		A4BCD95626E09F8D008542DD /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		A4BCD95C26E0C054008542DD /* iOSExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BCD95E26E0C054008542DD /* iOSExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSExampleApp.swift; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 		A4BCD95426E09EAE008542DD /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				A4BCD94D26E09E69008542DD /* Error.swift */,
-				A4BCD94F26E09E69008542DD /* Title.swift */,
+				A4BCD94D26E09E69008542DD /* ErrorStyle.swift */,
+				A4BCD94F26E09E69008542DD /* TitleStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -373,9 +373,9 @@
 				A4BCD95026E09E69008542DD /* FloatingLabelTextField.swift in Sources */,
 				A4BCD93526E09E23008542DD /* FloatingLabelTextFieldStyle.docc in Sources */,
 				A4BCD95226E09E69008542DD /* FloatingLabelTextFieldStyle.swift in Sources */,
-				A4BCD95326E09E69008542DD /* Title.swift in Sources */,
+				A4BCD95326E09E69008542DD /* TitleStyle.swift in Sources */,
 				A4BCD95726E09F8D008542DD /* View+Extension.swift in Sources */,
-				A4BCD95126E09E69008542DD /* Error.swift in Sources */,
+				A4BCD95126E09E69008542DD /* ErrorStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

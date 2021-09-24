@@ -6,24 +6,47 @@ import SwiftUI
 public struct FloatingLabelTextFieldStyle: TextFieldStyle
 {
     // Private
-    private let title: FloatingLabelTextFieldStyle.Title
+    private let borderColor: Color
+    private let titleStyle: FloatingLabelTextFieldStyle.TitleStyle
+    private let errorStyle: FloatingLabelTextFieldStyle.ErrorStyle?
     private let showClearButton: Bool
-    private let error: FloatingLabelTextFieldStyle.Error?
     
     // MARK: Initialization
     
     /// Initialize a new `FloatingLabelTextFieldStyle` instance.
     /// - Parameters:
-    ///   - title: The title configuration.
-    ///   - error: The error configuration.
+    ///   - borderColor: The default border colour.
+    ///   - showClearButton: Indicate whether to display clear text button.
+    ///   - titleStyle: The title style.
+    ///   - errorStyle: The error style.
     public init(
-        title: FloatingLabelTextFieldStyle.Title,
-        error: FloatingLabelTextFieldStyle.Error? = nil,
+        borderColor: Color,
+        showClearButton: Bool = true,
+        titleStyle: FloatingLabelTextFieldStyle.TitleStyle,
+        errorStyle: FloatingLabelTextFieldStyle.ErrorStyle? = nil
+    )
+    {
+        self.borderColor = borderColor
+        self.titleStyle = titleStyle
+        self.errorStyle = errorStyle
+        self.showClearButton = showClearButton
+    }
+    
+    /// Initialize a new `FloatingLabelTextFieldStyle` instance.
+    /// - Parameters:
+    ///   - title: The title style.
+    ///   - error: The error style.
+    ///   - showClearButton: Indicate whether to display clear text button.
+    @available(*, deprecated, message: "Use: .init(borderColor:showClearButton:titleStyle:errorStyle)")
+    public init(
+        title: FloatingLabelTextFieldStyle.TitleStyle,
+        error: FloatingLabelTextFieldStyle.ErrorStyle? = nil,
         showClearButton: Bool = true
     )
     {
-        self.title = title
-        self.error = error
+        self.borderColor = Color.black.opacity(0.1)
+        self.titleStyle = title
+        self.errorStyle = error
         self.showClearButton = showClearButton
     }
     
@@ -37,9 +60,10 @@ public struct FloatingLabelTextFieldStyle: TextFieldStyle
         FloatingLabelTextField(
             text: text,
             textField: configuration,
-            title: self.title,
-            error: self.error,
-            showClearButton: self.showClearButton
+            defaultBorderColor: self.borderColor,
+            showClearButton: self.showClearButton,
+            title: self.titleStyle,
+            error: self.errorStyle
         )
     }
 }
@@ -50,8 +74,25 @@ extension TextFieldStyle where Self == FloatingLabelTextFieldStyle
 {
     /// A text field style with floating label decoration.
     public static func floating(
-        title: FloatingLabelTextFieldStyle.Title,
-        error: FloatingLabelTextFieldStyle.Error? = nil,
+        borderColor: Color = Color.black.opacity(0.1),
+        showClearButton: Bool = true,
+        titleStyle: FloatingLabelTextFieldStyle.TitleStyle,
+        errorStyle: FloatingLabelTextFieldStyle.ErrorStyle? = nil
+    ) -> FloatingLabelTextFieldStyle
+    {
+        FloatingLabelTextFieldStyle(
+            borderColor: borderColor,
+            showClearButton: showClearButton,
+            titleStyle: titleStyle,
+            errorStyle: errorStyle
+        )
+    }
+    
+    /// A text field style with floating label decoration.
+    @available(*, deprecated, message: "Use: .floating(borderColor:showClearButton:titleStyle:errorStyle)")
+    public static func floating(
+        title: FloatingLabelTextFieldStyle.TitleStyle,
+        error: FloatingLabelTextFieldStyle.ErrorStyle? = nil,
         showClearButton: Bool = true
     ) -> FloatingLabelTextFieldStyle
     {
@@ -75,22 +116,22 @@ struct FloatingLabelTextFieldStyle_Previews: PreviewProvider
             TextField("e.g. me@red.to", text: .constant(""))
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email")
+                        titleStyle: .init(text: "Email")
                     )
                 )
             
             TextField("e.g. me@red.to", text: .constant("me@red.to"))
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email")
+                        titleStyle: .init(text: "Email")
                     )
                 )
             
             TextField("e.g. me@red.to", text: .constant("💩"))
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email"),
-                        error: .init(text: "💩 is not a valid email address.")
+                        titleStyle: .init(text: "Email"),
+                        errorStyle: .init(text: "💩 is not a valid email address.")
                     )
                 )
         }

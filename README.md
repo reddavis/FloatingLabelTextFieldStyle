@@ -37,15 +37,16 @@ struct ContentView: View
             TextField("e.g. me@red.to", text: self.$email)
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email")
+                        titleStyle: .init(text: "Email")
                     )
                 )
             
             TextField("e.g. me@red.to", text: .constant("💩"))
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email"),
-                        error: .init(text: "💩 is not a valid email address.")
+                        borderColor: .red,
+                        titleStyle: .init(text: "Email"),
+                        errorStyle: .init(text: "💩 is not a valid email address.")
                     )
                 )
         }

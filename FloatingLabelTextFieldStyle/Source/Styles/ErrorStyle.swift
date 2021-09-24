@@ -4,7 +4,7 @@ import SwiftUI
 public extension FloatingLabelTextFieldStyle
 {
     /// Floating label text field style error configuration.
-    struct Error
+    struct ErrorStyle
     {
         /// The error text.
         let text: LocalizedStringKey

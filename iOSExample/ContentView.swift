@@ -13,7 +13,8 @@ struct ContentView: View
             TextField("example@red.to", text: self.$email)
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email")
+                        borderColor: Color("Border"),
+                        titleStyle: .init(text: "Email")
                     )
                 )
             

@@ -5,9 +5,10 @@ struct FloatingLabelTextField: View
 {
     @Binding var text: String
     let textField: TextField<TextFieldStyle._Label>
-    let title: FloatingLabelTextFieldStyle.Title
-    let error: FloatingLabelTextFieldStyle.Error?
+    let defaultBorderColor: Color
     let showClearButton: Bool
+    let title: FloatingLabelTextFieldStyle.TitleStyle
+    let error: FloatingLabelTextFieldStyle.ErrorStyle?
     
     // Private
     @State private var isHighlighted: Bool = false
@@ -30,7 +31,7 @@ struct FloatingLabelTextField: View
         }
         else
         {
-            return .black.opacity(0.1)
+            return self.defaultBorderColor
         }
     }
     
@@ -149,14 +150,16 @@ struct FloatingLabelTextField_Previews: PreviewProvider
             TextField("Placeholder", text: .constant(""))
                 .textFieldStyle(
                     FloatingLabelTextFieldStyle(
-                        title: .init(text: "Email")
+                        borderColor: .red,
+                        titleStyle: .init(text: "Email")
                     )
                 )
             
             TextField("Placeholder", text: .constant("me@red.to"))
                 .textFieldStyle(
                     FloatingLabelTextFieldStyle(
-                        title: .init(text: "Email")
+                        borderColor: .red,
+                        titleStyle: .init(text: "Email")
                     )
                 )
         }
