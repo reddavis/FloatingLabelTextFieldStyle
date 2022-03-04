@@ -4,10 +4,8 @@ import XCTest
 @testable import FloatingLabelTextFieldStyle
 
 
-class FloatingLabelTextFieldStyleTests: XCTestCase
-{
-    func testDefaultState()
-    {
+class FloatingLabelTextFieldStyleTests: XCTestCase {
+    func testDefaultState() {
         assertSnapshot(
             matching: TextField("e.g. me@red.to", text: .constant(""))
                 .textFieldStyle(
@@ -20,8 +18,7 @@ class FloatingLabelTextFieldStyleTests: XCTestCase
         )
     }
     
-    func testWithValueState()
-    {
+    func testWithValueState() {
         assertSnapshot(
             matching: TextField("e.g. me@red.to", text: .constant("me@red.to"))
                 .textFieldStyle(
@@ -34,8 +31,7 @@ class FloatingLabelTextFieldStyleTests: XCTestCase
         )
     }
     
-    func testWithValueAndHiddenClearButtonState()
-    {
+    func testWithValueAndHiddenClearButtonState() {
         assertSnapshot(
             matching: TextField("e.g. me@red.to", text: .constant("me@red.to"))
                 .textFieldStyle(
@@ -49,8 +45,7 @@ class FloatingLabelTextFieldStyleTests: XCTestCase
         )
     }
     
-    func testErrorState()
-    {
+    func testErrorState() {
         assertSnapshot(
             matching: TextField("e.g. me@red.to", text: .constant("💩"))
                 .textFieldStyle(
