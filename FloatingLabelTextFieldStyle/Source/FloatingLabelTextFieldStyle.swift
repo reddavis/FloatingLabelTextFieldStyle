@@ -3,10 +3,9 @@ import SwiftUI
 
 /// A floating label style for `TextField` with support for displaying
 /// error messages.
-public struct FloatingLabelTextFieldStyle: TextFieldStyle
-{
-    // Private
+public struct FloatingLabelTextFieldStyle: TextFieldStyle {
     private let borderColor: Color
+    private let backgroundColor: Color
     private let titleStyle: FloatingLabelTextFieldStyle.TitleStyle
     private let errorStyle: FloatingLabelTextFieldStyle.ErrorStyle?
     private let showClearButton: Bool
@@ -16,44 +15,27 @@ public struct FloatingLabelTextFieldStyle: TextFieldStyle
     /// Initialize a new `FloatingLabelTextFieldStyle` instance.
     /// - Parameters:
     ///   - borderColor: The default border colour.
+    ///   - backgroundColor: The background colour.
     ///   - showClearButton: Indicate whether to display clear text button.
     ///   - titleStyle: The title style.
     ///   - errorStyle: The error style.
     public init(
         borderColor: Color,
+        backgroundColor: Color,
         showClearButton: Bool = true,
         titleStyle: FloatingLabelTextFieldStyle.TitleStyle,
         errorStyle: FloatingLabelTextFieldStyle.ErrorStyle? = nil
-    )
-    {
+    ) {
         self.borderColor = borderColor
+        self.backgroundColor = backgroundColor
         self.titleStyle = titleStyle
         self.errorStyle = errorStyle
         self.showClearButton = showClearButton
     }
     
-    /// Initialize a new `FloatingLabelTextFieldStyle` instance.
-    /// - Parameters:
-    ///   - title: The title style.
-    ///   - error: The error style.
-    ///   - showClearButton: Indicate whether to display clear text button.
-    @available(*, deprecated, message: "Use: .init(borderColor:showClearButton:titleStyle:errorStyle)")
-    public init(
-        title: FloatingLabelTextFieldStyle.TitleStyle,
-        error: FloatingLabelTextFieldStyle.ErrorStyle? = nil,
-        showClearButton: Bool = true
-    )
-    {
-        self.borderColor = Color.black.opacity(0.1)
-        self.titleStyle = title
-        self.errorStyle = error
-        self.showClearButton = showClearButton
-    }
-    
     // MARK: TextFieldStyle
     
-    public func _body(configuration: TextField<Self._Label>) -> some View
-    {
+    public func _body(configuration: TextField<Self._Label>) -> some View {
         let mirror = Mirror(reflecting: configuration)
         let text = mirror.descendant("_text") as! Binding<String>
         
@@ -61,6 +43,7 @@ public struct FloatingLabelTextFieldStyle: TextFieldStyle
             text: text,
             textField: configuration,
             defaultBorderColor: self.borderColor,
+            backgroundColor: self.backgroundColor,
             showClearButton: self.showClearButton,
             title: self.titleStyle,
             error: self.errorStyle
@@ -70,36 +53,21 @@ public struct FloatingLabelTextFieldStyle: TextFieldStyle
 
 // MARK: Dot helper
 
-extension TextFieldStyle where Self == FloatingLabelTextFieldStyle
-{
+extension TextFieldStyle where Self == FloatingLabelTextFieldStyle {
     /// A text field style with floating label decoration.
     public static func floating(
-        borderColor: Color = Color.black.opacity(0.1),
+        borderColor: Color = .black.opacity(0.1),
+        backgroundColor: Color = .white,
         showClearButton: Bool = true,
         titleStyle: FloatingLabelTextFieldStyle.TitleStyle,
         errorStyle: FloatingLabelTextFieldStyle.ErrorStyle? = nil
-    ) -> FloatingLabelTextFieldStyle
-    {
-        FloatingLabelTextFieldStyle(
+    ) -> Self {
+        .init(
             borderColor: borderColor,
+            backgroundColor: backgroundColor,
             showClearButton: showClearButton,
             titleStyle: titleStyle,
             errorStyle: errorStyle
-        )
-    }
-    
-    /// A text field style with floating label decoration.
-    @available(*, deprecated, message: "Use: .floating(borderColor:showClearButton:titleStyle:errorStyle)")
-    public static func floating(
-        title: FloatingLabelTextFieldStyle.TitleStyle,
-        error: FloatingLabelTextFieldStyle.ErrorStyle? = nil,
-        showClearButton: Bool = true
-    ) -> FloatingLabelTextFieldStyle
-    {
-        FloatingLabelTextFieldStyle(
-            title: title,
-            error: error,
-            showClearButton: showClearButton
         )
     }
 }
@@ -109,8 +77,7 @@ extension TextFieldStyle where Self == FloatingLabelTextFieldStyle
 
 // MARK: Preview
 
-struct FloatingLabelTextFieldStyle_Previews: PreviewProvider
-{
+struct FloatingLabelTextFieldStyle_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             TextField("e.g. me@red.to", text: .constant(""))

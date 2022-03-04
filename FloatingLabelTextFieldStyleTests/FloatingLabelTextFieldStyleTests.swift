@@ -12,7 +12,7 @@ class FloatingLabelTextFieldStyleTests: XCTestCase
             matching: TextField("e.g. me@red.to", text: .constant(""))
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email")
+                        titleStyle: .init(text: "Email")
                     )
                 ),
             as: .image,
@@ -26,7 +26,7 @@ class FloatingLabelTextFieldStyleTests: XCTestCase
             matching: TextField("e.g. me@red.to", text: .constant("me@red.to"))
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email")
+                        titleStyle: .init(text: "Email")
                     )
                 ),
             as: .image,
@@ -40,8 +40,8 @@ class FloatingLabelTextFieldStyleTests: XCTestCase
             matching: TextField("e.g. me@red.to", text: .constant("me@red.to"))
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email"),
-                        showClearButton: false
+                        showClearButton: false,
+                        titleStyle: .init(text: "Email")
                     )
                 ),
             as: .image,
@@ -55,8 +55,8 @@ class FloatingLabelTextFieldStyleTests: XCTestCase
             matching: TextField("e.g. me@red.to", text: .constant("💩"))
                 .textFieldStyle(
                     .floating(
-                        title: .init(text: "Email"),
-                        error: .init(text: "💩 is not a valid email address.")
+                        titleStyle: .init(text: "Email"),
+                        errorStyle: .init(text: "💩 is not a valid email address.")
                     )
                 ),
             as: .image,
