@@ -1,11 +1,11 @@
 import SwiftUI
 
 
-struct FloatingLabelTextField: View
-{
+struct FloatingLabelTextField: View {
     @Binding var text: String
     let textField: TextField<TextFieldStyle._Label>
     let defaultBorderColor: Color
+    let backgroundColor: Color
     let showClearButton: Bool
     let title: FloatingLabelTextFieldStyle.TitleStyle
     let error: FloatingLabelTextFieldStyle.ErrorStyle?
@@ -20,28 +20,21 @@ struct FloatingLabelTextField: View
     }
     
     private var borderColor: Color {
-        if let error = self.error
-        {
+        if let error = self.error {
             return error.color
         }
         
-        if self.isHighlighted || !self.text.isEmpty
-        {
+        if self.isHighlighted || !self.text.isEmpty {
             return self.title.floatingColor
-        }
-        else
-        {
+        } else {
             return self.defaultBorderColor
         }
     }
     
     private var borderWidth: Double {
-        if self.isHighlighted && !self.text.isEmpty && self.error != nil
-        {
+        if self.isHighlighted && !self.text.isEmpty && self.error != nil {
             return 2.0
-        }
-        else
-        {
+        } else {
             return 1.0
         }
     }
@@ -53,18 +46,14 @@ struct FloatingLabelTextField: View
             HStack(spacing: 16) {
                 self.textInput()
                 
-                if self.showClearButton
-                {
+                if self.showClearButton {
                     self.clearButton()
-                }
-                else
-                {
+                } else {
                     Spacer()
                 }
             }
             
-            if let error = self.error
-            {
+            if let error = self.error {
                 Text(error.text)
                     .font(error.font)
                     .foregroundColor(error.color)
@@ -75,6 +64,10 @@ struct FloatingLabelTextField: View
             self.isTextFieldHidden ? EdgeInsets(top: 25, leading: 16, bottom: 25, trailing: 16)
             : EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
         )
+        .background {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(self.backgroundColor)
+        }
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .strokeBorder(
@@ -91,7 +84,7 @@ struct FloatingLabelTextField: View
             
             Task {
                 // Required or text field doesn't actually receive focus...
-                await Task.sleep(1_000_000_000 / 6)
+                try? await Task.sleep(nanoseconds: 1_000_000_000 / 6)
                 self.isTextFieldFocussed = newValue
             }
         }
@@ -102,8 +95,7 @@ struct FloatingLabelTextField: View
     
     // MARK: UI
     
-    private func textInput() -> some View
-    {
+    private func textInput() -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(self.title.text)
                 .font(self.isTextFieldHidden ? .body : .footnote)
@@ -118,15 +110,11 @@ struct FloatingLabelTextField: View
         }
     }
     
-    private func clearButton() -> some View
-    {
+    private func clearButton() -> some View {
         Group {
-            if self.text.isEmpty
-            {
+            if self.text.isEmpty {
                 Spacer()
-            }
-            else
-            {
+            } else {
                 Button(
                     action: { self.text.removeAll() },
                     label: {
@@ -143,14 +131,14 @@ struct FloatingLabelTextField: View
 
 // MARK: Preview
 
-struct FloatingLabelTextField_Previews: PreviewProvider
-{
+struct FloatingLabelTextField_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             TextField("Placeholder", text: .constant(""))
                 .textFieldStyle(
                     FloatingLabelTextFieldStyle(
                         borderColor: .red,
+                        backgroundColor: .white,
                         titleStyle: .init(text: "Email")
                     )
                 )
@@ -159,6 +147,7 @@ struct FloatingLabelTextField_Previews: PreviewProvider
                 .textFieldStyle(
                     FloatingLabelTextFieldStyle(
                         borderColor: .red,
+                        backgroundColor: .gray,
                         titleStyle: .init(text: "Email")
                     )
                 )
